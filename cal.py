@@ -1,24 +1,47 @@
 #clearly a cal
-num1 = float(input("Enter first number: "))
-operation = input("Choose operation (+, -, *, /)")
-num2 = float(input("Enter second number: "))
+memory = 0.0
 
-if operation == "+":
-    result = num1 + num2
+def safe_divide(a, b):
+    if b == 0:
+        return "Error: Cannot divide by zero"
+    return a / b
 
-elif operation == "-":
-    result = num1 - num2
+while True:
+    print(f"\n--- Current Saved Memory: {memory} ---")
+    print("Ops: + , - , * , / | 'quit' to exit")
+    
+    choice = input("Choose an option: ").strip().lower()
+    
+    if choice == 'quit':
+        print("Goodbye!")
+        break
+        
+    if choice not in ['+', '-', '*', '/']:
+        print("Invalid choice, please try again.")
+        continue
+        
+    try:
+        num1_input = input("Enter 1st number (or press Enter to use memory): ").strip()
+        num1 = memory if num1_input == "" else float(num1_input)
+        
+        num2_input = input("Enter 2nd number (or press Enter to use memory): ").strip()
+        num2 = memory if num2_input == "" else float(num2_input)
+    except ValueError:
+        print("Invalid input! Please enter numbers only.")
+        continue
 
-elif operation == "*":
-    result = num1 * num2
+    if choice == '+':
+        result = num1 + num2
+    elif choice == '-':
+        result = num1 - num2
+    elif choice == '*':
+        result = num1 * num2
+    elif choice == '/':
+        result = safe_divide(num1, num2)
 
-elif operation == "/":
-    if num2 == 0:
-        result = "Error: Division by zero"
-    else:
-      result = num1 / num2
+    print(f"Result: {result}")
+    
+   
+    if isinstance(result, (int, float)):
+        memory = result
 
-else:
-    result = "invalid operation"
-
-print("Result:", result)
