@@ -13,7 +13,10 @@ elif operation == "*":
     result = num1 * num2
 
 elif operation == "/":
-    result = num1 / num2
+    if num2 == 0:
+        result = "Error: Division by zero"
+    else:
+      result = num1 / num2
 
 else:
     result = "invalid operation"
