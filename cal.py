@@ -1,10 +1,10 @@
-#clearly a cal
+#A simple Python calculator with memory and error handling
 memory = 0.0
 
 def safe_divide(a, b):
     if b == 0:
-        return "Error: Cannot divide by zero"
-    return a / b
+        return None
+    
 
 while True:
     print(f"\n--- Current Saved Memory: {memory} ---")
